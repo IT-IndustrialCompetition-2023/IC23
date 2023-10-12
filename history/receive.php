@@ -16,7 +16,7 @@ function fetch_kelompok($db, $tableName, $columns) {
     } else {
         $columnName = implode(", ", $columns);
         // $query = "SELECT " . $columnName . " FROM $tableName" . " ORDER BY id DESC";
-        $query = "SELECT id, nama FROM game_kelompok ORDER BY nama DESC";
+        $query = "SELECT id, nama_kelompok FROM kelompok ORDER BY nama_kelompok ASC";
         $stmt = $db->query($query);
 
         if ($stmt !== false) {
@@ -44,7 +44,7 @@ function fetch_data($db, $tableName, $columns) {
     } else {
         $columnName = implode(", ", $columns);
         // $query = "SELECT " . $columnName . " FROM $tableName" . " ORDER BY id DESC";
-        $query = "SELECT $columnName, (SELECT nama FROM game_kelompok k WHERE k.id = h.id_kelompok) AS namaKelompok, (SELECT nama FROM game_post p WHERE p.id = h.id_post) AS namaPost FROM $tableName h ORDER BY id DESC";
+        $query = "SELECT $columnName, (SELECT nama_kelompok FROM kelompok k WHERE k.id = h.id_kelompok) AS namaKelompok, (SELECT nama FROM game_post p WHERE p.id = h.id_post) AS namaPost FROM $tableName h ORDER BY id DESC";
         $stmt = $db->query($query);
 
         if ($stmt !== false) {
