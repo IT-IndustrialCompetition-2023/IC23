@@ -16,7 +16,7 @@ function fetch_kelompok($db, $tableName, $columns) {
     } else {
         $columnName = implode(", ", $columns);
         // $query = "SELECT " . $columnName . " FROM $tableName" . " ORDER BY id DESC";
-        $query = "SELECT id, nama_kelompok FROM kelompok ORDER BY nama_kelompok ASC";
+        $query = "SELECT id, nama FROM kelompok ORDER BY nama ASC";
         $stmt = $db->query($query);
 
         if ($stmt !== false) {

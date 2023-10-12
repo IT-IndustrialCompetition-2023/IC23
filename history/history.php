@@ -87,7 +87,7 @@
             foreach ($dataKelompok as $kelompok) { ?>
 
                 <option value="<?php echo $kelompok["id"]; ?>">
-                    <?php echo $kelompok["nama_kelompok"]; ?>
+                    <?php echo $kelompok["nama"]; ?>
                 </option>
             <?php }
         } ?>
