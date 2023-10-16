@@ -83,6 +83,9 @@
     <label for="kelompok1" class="keterangan full-container" style="text-align: center;"> NAMA KELOMPOK : </label>
     <div class="full-container">
         <select class="selectpicker" id="kelompok1" data-live-search="true">
+            <option value="">
+                <?php echo "Show All"; ?>
+            </option>
         <?php if (is_array($dataKelompok)) {
             foreach ($dataKelompok as $kelompok) { ?>
 
@@ -170,6 +173,7 @@
                 "autoWidth": false, // Disable automatic column width calculation
                 "lengthChange": false, // Hide the length change control
                 "searching": false, // Disable searching
+                "order": [],
             });
         });
 
