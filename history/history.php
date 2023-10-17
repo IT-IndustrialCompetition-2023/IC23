@@ -51,10 +51,10 @@
                         <ul class="navbar-nav">
 
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="input.html">Input</a>
+                                <a class="nav-link active" aria-current="page" href="input_material.php">Input</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="history.html">History</a>
+                                <a class="nav-link active" aria-current="page" href="history.php">History</a>
                             </li>
                             <!-- <li class="nav-item">
                                 <a class="nav-link" href="#">Home</a>
@@ -63,7 +63,7 @@
                         </ul>
                     </div>
                     <div class="col-3 d-flex justify-content-center">
-                        <a class="navbar-brand" href="login.html"> Log Out
+                        <a class="navbar-brand" href="api/logout.php"> Log Out
                             <ion-icon name="exit-outline" id="exit"></ion-icon>
                         </a>
                         <!-- <ul class="navbar-nav">

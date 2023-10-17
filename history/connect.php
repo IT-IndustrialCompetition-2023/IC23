@@ -1,6 +1,6 @@
 <?php
 $host = "127.0.0.1";
-$db = "ic23";
+$db = "ic_2023";
 $user = "root";
 $pass = "";
 $charset = "utf8mb4";
