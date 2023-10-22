@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Handjet:wght@100;200;300;400;500;600;700;800;900&family=League+Spartan:wght@800&family=Press+Start+2P&family=Staatliches&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif&display=swap" rel="stylesheet">
+
+ <!-- font-family: 'DM Serif Display', serif;
+ font-family: 'PT Serif', serif;
+ font-family: 'Playfair Display', serif; -->
+    
+    <!-- <link rel="stylesheet" href="star.css"> -->
+
+    <style>
+
+        .spacer {
+            aspect-ratio: 960/300;
+            width: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+
+        .layer1 {
+            background-image: url('./layer1.svg');
+        }
+
+        .layer2 {
+            /* margin-top: 200px; */
+            background-image: url('./layer2.svg');
+        }
+
+        .flip {
+            transform: rotate(180deg);
+        }
+
+
+
+        i {
+            animation: colorChanges 3s linear 0s infinite;
+        }
+
+        h1 {
+            color: rgb(37, 2, 80);
+            background: rgb(238,174,202);
+            background: linear-gradient(90deg, rgba(239, 142, 184, 0.45) 12%,rgba(148,187,233,0.77) 50%, rgba(39, 47, 57, 0.392) 100%);
+            /* font-family: 'Black Ops One', 'cursive'; */
+            font-family: 'PT Serif', serif;
+            
+            
+            text-shadow: 2px 2px 10px rgba(169, 60, 60, 0.5), -5px -7px 30px rgb(227, 243, 189, 0.55);
+            border-bottom: 15px solid;
+            border-top: 15px solid;
+            border-image:url("https://mdn.github.io/css-examples/tools/border-image-generator/border-image-1.png") 20% round;
+            border-image-outset: 20px; 
+            animation: glowing 2s infinite;
+            
+        }
+
+        @keyframes glowing {
+        0% {
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+        }
+        50% {
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+        }
+        100% {
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+        }
+        }
+        
+
+        .card-body {
+            border-radius: 520px !important;
+            box-shadow: -3px 4px 20px rgb(4, 2, 8);
+        }
+
+        .bg-planet{
+            background-image: url("https://images.unsplash.com/photo-1462240006665-9529b3a399b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1927&q=80");
+            background-attachment: fixed;
+            background-size: cover;
+            background-blend-mode: luminosity;
+            
+        }
+
+        
+
+        .card, .card-footer {
+            background-color: rgba(5, 13, 69, 0.348);
+        }
+        tr, td, th {
+            /* font-family: 'League Spartan', cursive; */
+            font-family: 'DM Serif Display', serif;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 10px rgb(227, 243, 189);
+            box-shadow: -3px 4px 20px rgb(4, 2, 8);
+            vertical-align: middle;
+        }
+
+        body{
+            
+            background-color: #202731;
+            background: radial-gradient(circle,rgba(32,39,49,1) 10%, rgba(233, 93, 23, 0.781) 33%, rgba(32,39,49,1) 48.5%);
+        
+
+        }
+
+        @keyframes colorChanges {
+            0%{
+                color: rgb(251, 0, 0);
+            }
+            14% {
+                color: rgb(185, 95, 5);
+            }
+            28% {
+                color: rgb(242, 255, 0);
+            }
+            56% {
+                color: rgb(0, 128, 0);
+            }
+            70% {
+                color: rgb(0, 191, 255);
+            }
+            100%{
+                color: rgb(205, 67, 255);
+            }
+        }
+
+    </style>
+
+</head>
+<body>
+    
+    <div class="spacer layer1"></div>
+    <section class="wrapper">
+        <div class="stars"></div>
+        <div class="stars2"></div>
+        <div class="stars3"></div>
+    </section>
+
+    
+
+    <h1 class="p-1 ps-2" id="bid">BID PRICE </h1>
+    <div class="container-fluid">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-sm-1">
+            <div class="col">
+                <div class="card shadow-lg">
+                    <div class="card-body bg-warning-subtle bg-planet">
+                        <table class="table table-sm table-bordered border-dark-subtle shadow-lg m-0" style="font-size: small;">
+                            <tr>
+                                <th class="col-4 table-success">Day Published</th>
+                                <td colspan="2" class="text-center col-8"></td>
+                            </tr>
+                            <tr>
+                                <th class="table-success">Bid Number</th>
+                                <td colspan="2" class="text-center"></td>
+                    
+                            </tr>
+                            <tr>
+                                <th class="table-success">Client</th>
+                                <td class="text-center col-4"></td>
+                                <td class="text-center col-4"></td>
+                    
+                            </tr>
+                            <tr>
+                                <th class="table-success">Product</th>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                    
+                            </tr>
+                            <tr>
+                                <th class="table-success">Max Bid Price</th>
+                                <td colspan="2" class="text-center"></td>
+                            </tr>
+                            <tr>
+                                <th class="table-success">Minimum Bidder</th>
+                                <td colspan="2" class="text-center"></td>
+                    
+                            </tr>
+                            <tr>
+                                <th class="table-success">Late Penalty</th>
+                                <td colspan="2" class="text-center"></td>
+                            </tr>
+                            <tr>
+                                <th class="table-success">Bid Result Day</th>
+                                <td colspan="2" class="text-center"></td>
+                    
+                            </tr>
+                            <tr>
+                                <th class="table-success">Need Day</th>
+                                <td colspan="2" class="text-center"></td>
+                        </table>
+                 
+                    </div>
+                    <div class="card-footer bg-planet">
+                        <div class="input-group border-5" style="font-family: 'DM Serif Display', serif;">
+                            <input class="form-control form-control-sm" type="text" placeholder="Input harga">
+                            <button class="btn btn-sm btn-warning w-25" type="button">BID</button>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+    
+    <h1 class="mt-5 p-1 ps-2" id="fixed">FIXED PRICE </h1>
+    <div class="container-fluid">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-sm-1 mb-5">
+            <div class="col">
+                <div class="card shadow-lg">
+                    <div class="card-body bg-dark-subtle bg-planet">
+                        <table class="table table-sm table-bordered border-dark-subtle" style="font-size: small;">
+                            <tr>
+                                <th class="col-4 table-danger">Day Published</th>
+                                <td colspan="2" class="text-center col-8"></td>
+                            </tr>
+                            <tr>
+                                <th class="table-danger">Bid Number</th>
+                                <td class="text-center"></td>
+                                <td class="d-flex align-items-center justify-content-center">
+                                    <!-- <input type="checkbox" class="form-check"> -->
+                                    <button class="btn btn-danger w-100 btn-sm">BID</button>
+                                </td>
+                    
+                            </tr>
+                            <tr>
+                                <th class="table-danger">Client</th>
+                                <td class="text-center col-4"></td>
+                                <td class="text-center col-4"></td>
+                    
+                            </tr>
+                            <tr>
+                                <th class="table-danger">Product</th>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                    
+                            </tr>
+                            <tr>
+                                <th class="table-danger">Each</th>
+                                <td colspan="2" class="text-center"></td>
+                            </tr>
+                            <tr>
+                                <th class="table-danger">Late Penalty</th>
+                                <td colspan="2" class="text-center"></td>
+                            </tr>
+                            <tr>
+                                <th class="table-danger">Result Day</th>
+                                <td colspan="2" class="text-center"></td>
+                    
+                            </tr>
+                            <tr>
+                                <th class="table-danger">Need Day</th>
+                                <td colspan="2" class="text-center"></td>
+                        </table>
+                 
+                    </div>
+                    <!-- <div class="card-footer">
+                        <div class="input-group">
+                            <input class="form-control form-control-sm" type="text" placeholder="Input harga">
+                            <button class="btn btn-sm btn-warning w-25" type="button">Bid</button>
+                        </div>
+                        
+                        
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function()
+            {
+                var text = $("#fixed").html();
+                $("#fixed").html("");
+                var i = 0;
+                function type() {
+                    if (i < text.length) {
+                        $("#fixed").html(text.substring(0,i+1));
+                        i++;
+                        setTimeout(type, 200); // Adjust the typing speed (in milliseconds)
+                    }
+                    
+                    
+            
+                }
+                type();
+                var arrCount = 0;
+                // function rightArrow() {
+                //     if (arrCount%2 == 0) {
+                //         $("#fixed").append('<i class="bi bi-caret-right-fill" style="font"></i>');
+                //     } else {
+                //         $("#fixed").append('<i class="bi bi-caret-right"></i>');
+                //     };
+
+                //     if (arrCount == 10) {return;};
+                //     arrCount++;
+                //     setTimeout(rightArrow, 100);
+                // }
+                setTimeout(function(){
+                    // rightArrow();
+                    $("#fixed").append('<i class="bi bi-tags-fill float-end me-2 m-1" style="text-shadow: none;"></i>');
+                }, 200*text.length+100);
+
+        });
+
+        $(function()
+        {
+            var text = $("#bid").html();
+            $("#bid").html("");
+            var i = 0;
+            function type() {
+                if (i < text.length) {
+                    $("#bid").html(text.substring(0,i+1));
+                    i++;
+                    setTimeout(type, 200); // Adjust the typing speed (in milliseconds)
+                }
+                
+                
+        
+            }
+            type();
+           
+            setTimeout(function(){
+                $("#bid").append('<i class="bi bi-tags-fill float-end me-2 m-1" style="text-shadow: none;"></i>');
+            }, 200*text.length+100);
+        })
+        
+        
+    </script>
+
+    <div class="spacer layer2 flip mb-0"></div>
+    
+    
+    
+</body>
+</html>
