@@ -76,9 +76,6 @@ if ( isset($_POST["login"]) ) {
             </script>
     <?php } ?>
 
-    <div class="tengah-layar">
-    </div>
-
     <div class="box">
         <div class="form">
             <h2>LOGIN</h2>
