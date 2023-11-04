@@ -22,7 +22,7 @@ $data = $stmt->fetch();
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>Demand Table</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap" rel="stylesheet">
@@ -36,7 +36,6 @@ $data = $stmt->fetch();
         scroll-behavior: smooth;
     }
     body{
-        margin-top: 1vh;
             background: linear-gradient(13deg, rgba(99, 3, 148, 1) 17%, rgba(9, 23, 55, 1) 100%);
             min-height: 100vh;
             padding-bottom: 5vh;
@@ -69,11 +68,11 @@ $data = $stmt->fetch();
 </style>
 <link rel="stylesheet" href="./assets/nav.css">
 </head>
-  <body class="">  
-   <?php include_once "nav.php"; ?>
+<body class="">  
+    <?php include_once "nav.php"; ?>
 
-    <section class= " px-3 pt-5">
-        <div class="container bg-dark p-4 mt-5 text-light text-center rounded-4" id="judul">
+    <section class= " px-3 pt-5 mt-3" id="sec-top">
+        <div class="container bg-dark p-4 mt-3 text-light text-center rounded-4" id="judul">
             <h1 >STARLIGHT ODYSSEY</h1>
         <!-- </div> -->
         <!-- <div class="container bg-dark py-4 px-4 text-light text-center" id="tabel"> -->
