@@ -1,6 +1,6 @@
 <?php
 include '../../../connect.php';
-if(!isset($_SESSION['nrp_admin']) || $_SESSION['nrp_admin'] == ""){
+if (!isset($_SESSION['nrp_admin']) || $_SESSION['nrp_admin'] == "") {
     header("Location: ../index.php");
     exit();
 }
@@ -12,7 +12,7 @@ $query->execute();
 $listKelompok = $query->fetchAll();
 
 //late
-if(isset($_SESSION['namekel_day2'])){
+if (isset($_SESSION['namekel_day2'])) {
     $bid;
     $fixed;
 
@@ -23,18 +23,17 @@ if(isset($_SESSION['namekel_day2'])){
     $stmt = $conn->prepare($sql);
     $stmt->execute([$_SESSION['namekel_day2']]);
 
-    while($data = $stmt->fetch()){
+    while ($data = $stmt->fetch()) {
         // jika bid
-        if($data['type']==0){
+        if ($data['type'] == 0) {
             $stmt2 = $conn->prepare("SELECT * FROM `day2_bid` b JOIN day2_kelompok_bid kb on b.id = kb.id_bid WHERE no = ? AND id_kelompok = ?;");
             $stmt2->execute([$data['no_bid'], $data['id_kelompok']]);
             $databid = $stmt2->fetch();
             $databid['data'] = $data;
             $bid[] = $databid;
-
         }
         // jika fixed
-        else if($data['type']==1){
+        else if ($data['type'] == 1) {
             $stmt2 = $conn->prepare("SELECT * FROM day2_fixed where no = ?");
             $stmt2->execute([$data['no_bid']]);
             $datafixed = $stmt2->fetch();
@@ -61,6 +60,9 @@ if(isset($_SESSION['namekel_day2'])){
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js">
     </script>
+
+    <!-- Sweet Alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js">
     </script>
@@ -95,32 +97,32 @@ if(isset($_SESSION['namekel_day2'])){
                 <span class="">Admin Page</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse me-5" id="navbarNav">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 p-0 ">
-            <li class="nav-item">
-                    <a class="nav-link" href="../super_admin/">Super Admin</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active " href="../input_sertifikasi/">Input Sertifikasi</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../delivery.php">Delivery</a>
-                </li>
-                <li class="nav-item">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 p-0 ">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../super_admin/">Super Admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active " href="../input_sertifikasi/">Input Sertifikasi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../delivery.php">Delivery</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="../news.php">News</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../DealAdmin/">Deal</a>
-                </li>
-                <li class="nav-item">
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link " href="../rank.php">Rank</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-danger " href="../api/logout.php">Logout</a>
-                </li>
-            </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-danger " href="../api/logout.php">Logout</a>
+                    </li>
+                </ul>
             </div>
         </div>
 
@@ -161,11 +163,11 @@ if(isset($_SESSION['namekel_day2'])){
                     <div>
                         <select class="form-select form-select-lg mb-3" name="select_kelompok" id="select_kelompok" aria-label=".form-select-lg example">
                             <option selected>Pilih Kelompok</option>
-                            <?php foreach ($listKelompok as $value) { 
-                                if($value["id"]==-1){
+                            <?php foreach ($listKelompok as $value) {
+                                if ($value["id"] == -1) {
                                     continue;
                                 }
-                                ?>
+                            ?>
                                 <option value="<?= $value['nama'] ?>"><?= $value['nama'] ?></option>
                             <?php } ?>
                         </select>
@@ -210,6 +212,12 @@ if(isset($_SESSION['namekel_day2'])){
                     <button type="submit" value="submit" class="btn btn-primary mt-3" name="submit-balance" id="submit-balance">Submit</button>
                 </div>
             </form>
+            <?php if (isset($_SESSION['input_uang_success']) && $_SESSION['input_uang_success'] = "success") { ?> 
+                <script>
+                Swal.fire("Input uang berhasil");
+                </script>
+                <?php unset($_SESSION['input_uang_success']) ?>
+            <?php } ?>
         </div>
     </section>
 
@@ -261,152 +269,151 @@ if(isset($_SESSION['namekel_day2'])){
             </div>
             <br>
 
-                <div class="">
-                    
-                    <!-- show -->
-                    <div >
-                        <?php
-                        if(isset($bid)){
-                            // bid
-                            foreach($bid as $data1){
-                                if($data1['data']['status']== 1){
+            <div class="">
+
+                <!-- show -->
+                <div>
+                    <?php
+                    if (isset($bid)) {
+                        // bid
+                        foreach ($bid as $data1) {
+                            if ($data1['data']['status'] == 1) {
                                 echo "
                                 <h3 class='text-center mt-4' >Bid Tabel</h3>
                                 <table class='table table-bordered border-dark-subtle  shadow-lg  mt-2 ' style='font-size:small;' >
                                     <tr>
                                         <th class='table-success'>Pemenang</th>
-                                        <td colspan='2' class='text-center'>".$data1['data']['nama']."</td>
+                                        <td colspan='2' class='text-center'>" . $data1['data']['nama'] . "</td>
                                     </tr>
                                     <tr>
                                         <th class='table-success'>Day Published</th>
-                                        <td colspan='2' class='text-center'>".$data1['day']."</td>
+                                        <td colspan='2' class='text-center'>" . $data1['day'] . "</td>
                                     </tr>
                                     <tr>
                                         <th class='table-success'>Bid Number</th>
-                                        <td colspan='2' class='text-center'>".$data1['no']."</td>
+                                        <td colspan='2' class='text-center'>" . $data1['no'] . "</td>
                                         
                             
                                     </tr>
                                     <tr>
                                         <th class='table-success'>Client</th>
-                                        <td class='text-center col-4'>".$data1['client']."</td>
-                                        <td class='text-center col-4'>".$data1['kota']."</td>
+                                        <td class='text-center col-4'>" . $data1['client'] . "</td>
+                                        <td class='text-center col-4'>" . $data1['kota'] . "</td>
                             
                                     </tr>
                                     <tr>
                                         <th class='table-success'>Product</th>
-                                        <td class='text-center'>".$data1['product']."</td>
-                                        <td class='text-center'>".$data1['jumlah']."</td>
+                                        <td class='text-center'>" . $data1['product'] . "</td>
+                                        <td class='text-center'>" . $data1['jumlah'] . "</td>
                             
                                     </tr>
                                     <tr>
                                         <th class='table-success'>Late Penalty</th>
-                                        <td colspan='2' class='text-center'>".$data1['late_penalty']."</td>
+                                        <td colspan='2' class='text-center'>" . $data1['late_penalty'] . "</td>
                                     </tr>
                                     <tr>
                                         <th class='table-success'>Result Day</th>
-                                        <td colspan='2' class='text-center'>".$data1['result_day']."</td>
+                                        <td colspan='2' class='text-center'>" . $data1['result_day'] . "</td>
                             
                                     </tr>
                                     <tr>
                                         <th class='table-success'>Need Day</th>
-                                        <td colspan='2' class='text-center'>".$data1['need_day']."</td>
+                                        <td colspan='2' class='text-center'>" . $data1['need_day'] . "</td>
                                     </tr>
                                     <tr>
                                         <th class='table-success'>Harga</th>
-                                        <td colspan='2' class='text-center'>".$data1['harga']."</td>
+                                        <td colspan='2' class='text-center'>" . $data1['harga'] . "</td>
                                     </tr>
                                     <tr>
                                         <th class='table-success'>Archieve</th>
 
                                         <form action='lateInfo.php' method='post'>
-                                        <input type='hidden' name='idBid' value='".$data1['data']['id']."'>
+                                        <input type='hidden' name='idBid' value='" . $data1['data']['id'] . "'>
                                         <td colspan='2' class='text-center'> <button type='submit' value='archieve' class='btn btn-outline-secondary' name='kondisi'>Archieve</button> </td>
                                         </form>
                                     </tr>
                                 </table>
-                                <div class='alert alert-primary' role='alert'>Terlambat: ".
-                                    $data1['data']['late'].
-                                " hari</div>";
-                                }
+                                <div class='alert alert-primary' role='alert'>Terlambat: " .
+                                    $data1['data']['late'] .
+                                    " hari</div>";
                             }
                         }
+                    }
 
-                        if(isset($fixed)){
-                            // fixed
-                            foreach($fixed as $data2){
-                                if($data2['data']['status']== 1){
+                    if (isset($fixed)) {
+                        // fixed
+                        foreach ($fixed as $data2) {
+                            if ($data2['data']['status'] == 1) {
                                 echo "
                                 <h3 class='text-center mt-4'>Fixed Tabel</h3>
                                 <table class='table table-bordered border-dark-subtle  shadow-lg  mt-2 ' style='font-size:small;' >
                                     <tr>
                                         <th class='table-danger'>Pemenang</th>
-                                        <td colspan='2' class='text-center'>".$data2['data']['nama']."</td>
+                                        <td colspan='2' class='text-center'>" . $data2['data']['nama'] . "</td>
                                     </tr>
                                     <tr>
                                         <th class='table-danger'>Day Published</th>
-                                        <td colspan='2' class='text-center'>".$data2['day']."</td>
+                                        <td colspan='2' class='text-center'>" . $data2['day'] . "</td>
                                     </tr>
                                     <tr>
                                         <th class='table-danger'>Bid Number</th>
-                                        <td colspan='2' class='text-center'>".$data2['no']."</td>
+                                        <td colspan='2' class='text-center'>" . $data2['no'] . "</td>
                                     </tr>
                                     <tr>
                                         <th class='table-danger'>Client</th>
-                                        <td class='text-center col-4'>".$data2['client']."</td>
-                                        <td class='text-center col-4'>".$data2['kota']."</td>
+                                        <td class='text-center col-4'>" . $data2['client'] . "</td>
+                                        <td class='text-center col-4'>" . $data2['kota'] . "</td>
                             
                                     </tr>
                                     <tr>
                                         <th class='table-danger'>Product</th>
-                                        <td class='text-center'>".$data2['product']."</td>
-                                        <td class='text-center'>".$data2['jumlah']."</td>
+                                        <td class='text-center'>" . $data2['product'] . "</td>
+                                        <td class='text-center'>" . $data2['jumlah'] . "</td>
                             
                                     </tr>
                                     <tr>
                                         <th class='table-danger'>Late Penalty</th>
-                                        <td colspan='2' class='text-center'>".$data2['late_penalty']."</td>
+                                        <td colspan='2' class='text-center'>" . $data2['late_penalty'] . "</td>
                                     </tr>
                                     <tr>
                                         <th class='table-danger'>Result Day</th>
-                                        <td colspan='2' class='text-center'>".$data2['result_day']."</td>
+                                        <td colspan='2' class='text-center'>" . $data2['result_day'] . "</td>
                             
                                     </tr>
                                     <tr>
                                         <th class='table-danger'>Need Day</th>
-                                        <td colspan='2' class='text-center'>".$data2['need_day']."</td>
+                                        <td colspan='2' class='text-center'>" . $data2['need_day'] . "</td>
                                     </tr>
                                     <tr>
                                         <th class='table-danger'>Harga</th>
-                                        <td colspan='2' class='text-center'>".$data2['bid']."</td>
+                                        <td colspan='2' class='text-center'>" . $data2['bid'] . "</td>
                                     </tr>   
                                     <tr>
                                         <th class='table-danger'>Archieve</th>
                                         <form action='lateInfo.php' method='post'>
-                                        <input type='hidden' name='idBid' value='".$data2['data']['id']."'>
+                                        <input type='hidden' name='idBid' value='" . $data2['data']['id'] . "'>
                                         <td colspan='2' class='text-center'> <button type='submit' value='kondisi' class='btn btn-outline-secondary' name='kondisi'>Archieve</button> </td>
                                         </form>
                                     </tr>
                                 </table>
-                                <div class='alert alert-primary' role='alert'>Terlambat: ".
-                                    $data2['data']['late']." hari</div>";
-                                }
+                                <div class='alert alert-primary' role='alert'>Terlambat: " .
+                                    $data2['data']['late'] . " hari</div>";
                             }
-
                         }
-                        ?>
-                    </div>
-                    <!-- archive -->
-                    <div class="accordion" id="accordionExample">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
+                    }
+                    ?>
+                </div>
+                <!-- archive -->
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                 Archive Late
                             </button>
-                            </h2>
-                            <div id="collapseOne" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                                <div class="accordion-body row row-cols-1 row-cols-md-2 row-cols-lg-3 gx-4 gy-3 ">
-                                    <!-- <div class="col">
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
+                            <div class="accordion-body row row-cols-1 row-cols-md-2 row-cols-lg-3 gx-4 gy-3 ">
+                                <!-- <div class="col">
                                          <h3 class="text-center mt-4" >Delivery Fixed</h3>
                                         <table class="table table-sm table-bordered border-dark-subtle mt-2" style="font-size: small;">
                                             <tr>
@@ -464,144 +471,144 @@ if(isset($_SESSION['namekel_day2'])){
                                      
                                     </div> -->
 
-                                    <?php
-                        if(isset($bid)){
-                            // bid
-                            foreach($bid as $data1){
-                                if($data1['data']['status']== 0){
-                                echo "
+                                <?php
+                                if (isset($bid)) {
+                                    // bid
+                                    foreach ($bid as $data1) {
+                                        if ($data1['data']['status'] == 0) {
+                                            echo "
                                 <div class='col'>
                                 <h3 class='text-center mt-4' >Bid Tabel</h3>
                                 <table class='table table-bordered border-dark-subtle  shadow-lg  mt-2 ' style='font-size:small;' >
                                     <tr>
                                         <th class='table-success'>Pemenang</th>
-                                        <td colspan='2' class='text-center'>".$data1['data']['nama']."</td>
+                                        <td colspan='2' class='text-center'>" . $data1['data']['nama'] . "</td>
                                     </tr>
                                     <tr>
                                         <th class='table-success'>Day Published</th>
-                                        <td colspan='2' class='text-center'>".$data1['day']."</td>
+                                        <td colspan='2' class='text-center'>" . $data1['day'] . "</td>
                                     </tr>
                                     <tr>
                                         <th class='table-success'>Bid Number</th>
-                                        <td colspan='2' class='text-center'>".$data1['no']."</td>
+                                        <td colspan='2' class='text-center'>" . $data1['no'] . "</td>
                                         
                             
                                     </tr>
                                     <tr>
                                         <th class='table-success'>Client</th>
-                                        <td class='text-center col-4'>".$data1['client']."</td>
-                                        <td class='text-center col-4'>".$data1['kota']."</td>
+                                        <td class='text-center col-4'>" . $data1['client'] . "</td>
+                                        <td class='text-center col-4'>" . $data1['kota'] . "</td>
                             
                                     </tr>
                                     <tr>
                                         <th class='table-success'>Product</th>
-                                        <td class='text-center'>".$data1['product']."</td>
-                                        <td class='text-center'>".$data1['jumlah']."</td>
+                                        <td class='text-center'>" . $data1['product'] . "</td>
+                                        <td class='text-center'>" . $data1['jumlah'] . "</td>
                             
                                     </tr>
                                     <tr>
                                         <th class='table-success'>Late Penalty</th>
-                                        <td colspan='2' class='text-center'>".$data1['late_penalty']."</td>
+                                        <td colspan='2' class='text-center'>" . $data1['late_penalty'] . "</td>
                                     </tr>
                                     <tr>
                                         <th class='table-success'>Result Day</th>
-                                        <td colspan='2' class='text-center'>".$data1['result_day']."</td>
+                                        <td colspan='2' class='text-center'>" . $data1['result_day'] . "</td>
                             
                                     </tr>
                                     <tr>
                                         <th class='table-success'>Need Day</th>
-                                        <td colspan='2' class='text-center'>".$data1['need_day']."</td>
+                                        <td colspan='2' class='text-center'>" . $data1['need_day'] . "</td>
                                     </tr>
                                     <tr>
                                         <th class='table-success'>Harga</th>
-                                        <td colspan='2' class='text-center'>".$data1['harga']."</td>
+                                        <td colspan='2' class='text-center'>" . $data1['harga'] . "</td>
                                     </tr>
                                     <tr>
                                         <th class='table-success'>Archieve</th>
-                                        <input type='hidden' name='idBid' value='".$data1['data']['id']."'>
+                                        <input type='hidden' name='idBid' value='" . $data1['data']['id'] . "'>
                                     </tr>
                                 </table>
 
-                                <div class='alert alert-primary' role='alert'>Terlambat: ".
-                                    $data1['data']['late'].
-                                " hari</div>
+                                <div class='alert alert-primary' role='alert'>Terlambat: " .
+                                                $data1['data']['late'] .
+                                                " hari</div>
                                 </div>";
+                                        }
+                                    }
                                 }
-                            }
-                        }
 
 
-                        if(isset($fixed)){
-                            // fixed
-                            foreach($fixed as $data2){
-                                if($data2['data']['status']== 0){
-                                echo "
+                                if (isset($fixed)) {
+                                    // fixed
+                                    foreach ($fixed as $data2) {
+                                        if ($data2['data']['status'] == 0) {
+                                            echo "
                                 <div class='col'>
                                 <h3 class='text-center mt-4'>Fixed Tabel</h3>
                                 <table class='table table-bordered border-dark-subtle  shadow-lg  mt-2 ' style='font-size:small;' >
                                     <tr>
                                         <th class='table-danger'>Pemenang</th>
-                                        <td colspan='2' class='text-center'>".$data2['data']['nama']."</td>
+                                        <td colspan='2' class='text-center'>" . $data2['data']['nama'] . "</td>
                                     </tr>
                                     <tr>
                                         <th class='table-danger'>Day Published</th>
-                                        <td colspan='2' class='text-center'>".$data2['day']."</td>
+                                        <td colspan='2' class='text-center'>" . $data2['day'] . "</td>
                                     </tr>
                                     <tr>
                                         <th class='table-danger'>Bid Number</th>
-                                        <td colspan='2' class='text-center'>".$data2['no']."</td>
+                                        <td colspan='2' class='text-center'>" . $data2['no'] . "</td>
                                     </tr>
                                     <tr>
                                         <th class='table-danger'>Client</th>
-                                        <td class='text-center col-4'>".$data2['client']."</td>
-                                        <td class='text-center col-4'>".$data2['kota']."</td>
+                                        <td class='text-center col-4'>" . $data2['client'] . "</td>
+                                        <td class='text-center col-4'>" . $data2['kota'] . "</td>
                             
                                     </tr>
                                     <tr>
                                         <th class='table-danger'>Product</th>
-                                        <td class='text-center'>".$data2['product']."</td>
-                                        <td class='text-center'>".$data2['jumlah']."</td>
+                                        <td class='text-center'>" . $data2['product'] . "</td>
+                                        <td class='text-center'>" . $data2['jumlah'] . "</td>
                             
                                     </tr>
                                     <tr>
                                         <th class='table-danger'>Late Penalty</th>
-                                        <td colspan='2' class='text-center'>".$data2['late_penalty']."</td>
+                                        <td colspan='2' class='text-center'>" . $data2['late_penalty'] . "</td>
                                     </tr>
                                     <tr>
                                         <th class='table-danger'>Result Day</th>
-                                        <td colspan='2' class='text-center'>".$data2['result_day']."</td>
+                                        <td colspan='2' class='text-center'>" . $data2['result_day'] . "</td>
                             
                                     </tr>
                                     <tr>
                                         <th class='table-danger'>Need Day</th>
-                                        <td colspan='2' class='text-center'>".$data2['need_day']."</td>
+                                        <td colspan='2' class='text-center'>" . $data2['need_day'] . "</td>
                                     </tr>
                                     <tr>
                                         <th class='table-danger'>Harga</th>
-                                        <td colspan='2' class='text-center'>".$data2['bid']."</td>
+                                        <td colspan='2' class='text-center'>" . $data2['bid'] . "</td>
                                     </tr>   
                                     <tr>
                                         <th class='table-danger'>Archieve</th>
                                             <td colspan='2' class='text-center'> 
-                                                <input type='hidden' name='idBid' value='".$data2['data']['id']."'>
+                                                <input type='hidden' name='idBid' value='" . $data2['data']['id'] . "'>
                                             </td>
 
                                     </tr>
                                 </table>
 
-                                <div class='alert alert-primary' role='alert'>Terlambat: ".
-                                    $data2['data']['late']." hari</div>
+                                <div class='alert alert-primary' role='alert'>Terlambat: " .
+                                                $data2['data']['late'] . " hari</div>
                                     </div>";
+                                        }
+                                    }
                                 }
-                            }
-                        }
-                        ?>
+                                ?>
 
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
         </div>
     </section>
 
