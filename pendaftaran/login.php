@@ -23,6 +23,7 @@ if ( isset($_POST["login"]) ) {
         $error_mess = true;
     }
     echo $msg;
+    
 }
 ?>
 
@@ -79,7 +80,7 @@ if ( isset($_POST["login"]) ) {
                 <span>Password</span>
                 <i></i>
             </div>
-            <input id="btn" type="submit" name="login" class="submit" value="LOGIN">
+            <input id="btn" type="submit" name="login" class="submit" value="LOGIN" >
         </div>
     </div>
 
