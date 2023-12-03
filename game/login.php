@@ -15,19 +15,19 @@ if ( isset($_POST["login"]) ) {
     $stmt->execute([$username]);
     if($stmt->rowCount() == 1){
         $data = $stmt->fetch();
-        if(password_verify($pass, $data['password'])){
+    //     if(password_verify($pass, $data['password'])){
             $msg = 'success';
             $_SESSION['nama_kelompok'] = $username;
             header("Location: craft.php");
-        }else{
-            $msg =  'wrong';
-            $error_mess = true;
-        }
-    }else{
-        $msg = 'register';
-        $error_mess = true;
+    //     }else{
+    //         $msg =  'wrong';
+    //         $error_mess = true;
+    //     }
+    // }else{
+        // $msg = 'register';
+        // $error_mess = true;
     }
-    echo $msg;
+    // echo $msg;
 }
 ?>
 
@@ -36,9 +36,12 @@ if ( isset($_POST["login"]) ) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login Page</title>
 
     <link rel="stylesheet" href="style.css">
+    
+    <!-- fav icon -->
+    <link rel="icon" type="image/png" href="../assets/logo%20ic.png">
 </head>
 <body>
 
