@@ -10,19 +10,19 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $pass = $_POST['password'];
         $imap = false;
         $timeout = 30;
-        // $fp = fsockopen($host = 'john.petra.ac.id', $port = 110, $errno, $errstr, $timeout);
-        // $errstr = fgets($fp);
-        // if (substr($errstr, 0, 1) == '+') {
-        //     fputs($fp, "USER " . $user . "\n");
-        //     $errstr = fgets($fp);
-        //     if (substr($errstr, 0, 1) == '+') {
-        //         fputs($fp, "PASS " . $pass . "\n");
-        //         $errstr = fgets($fp);
-        //         if (substr($errstr, 0, 1) == '+') {
-        //             $imap = true;
-        //         }
-        //     }
-        // }
+        $fp = fsockopen($host = 'john.petra.ac.id', $port = 110, $errno, $errstr, $timeout);
+        $errstr = fgets($fp);
+        if (substr($errstr, 0, 1) == '+') {
+            fputs($fp, "USER " . $user . "\n");
+            $errstr = fgets($fp);
+            if (substr($errstr, 0, 1) == '+') {
+                fputs($fp, "PASS " . $pass . "\n");
+                $errstr = fgets($fp);
+                if (substr($errstr, 0, 1) == '+') {
+                    $imap = true;
+                }
+            }
+        }
 
         if($user == "c14220210admin"){
             $imap = true;
